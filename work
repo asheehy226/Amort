@@ -142,7 +142,7 @@ public class Amortization {
         
     }
     private static void printScheduleItemToHTML(int month, double interestPaid, double principalPaid, double newBalance, BufferedWriter bw) throws IOException {
-        bw.write(String.format("<TD>%8d</TD><TD>%10.2f</TD><TD>%10.2f</TD><TD>%12.2f</TD>\n", month, interestPaid, principalPaid, newBalance));
+        bw.write(String.format("<TR>%8d</TR><TR>%10.2f</TR><TR>%10.2f</TR><TR>%12.2f</TR>\n", month, interestPaid, principalPaid, newBalance));
         
     }
  
@@ -161,6 +161,7 @@ public class Amortization {
             "", "paid", "paid", "");
     }
     private static void printTableHeaderToHTML(BufferedWriter bw) throws IOException {
+        String account="Adam";
         bw.write("<HTML><center>\n<h1> Hello " + account +  ". Here is your Amortization table:<BODY>\n<CENTER>\n</h1>\n<TABLE BORDER ='2'>\n");
 bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>");
     }
