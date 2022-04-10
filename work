@@ -48,7 +48,7 @@ public class Amortization {
             System.out.println("The file does not exist.");
         }
         BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-         printAmortizationScheduleToHTML(
+         printAmortizationScheduleToHTML(loanAmount, annualInterestRate, numYears, bw);
         bw.write("</TABLE>\n</CENTER>\n</BODY>\n</HTML>");
         bw.close();
     
