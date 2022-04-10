@@ -116,7 +116,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
          bw.write(String.format("Total Payment: $%8.2f%n", monthlyPayment * numYears * 12));
 
         // Print the table header
-        printTableHeader();
+        printTableHeaderToHTML();
 
         for (month = 1; month <= numMonths; month++) {
             // Compute amount paid and new balance for each payment period
@@ -125,7 +125,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
             newBalance    = principal      - principalPaid;
 
             // Output the data item
-            printScheduleItem(month,interestPaid, principalPaid, newBalance);
+            printScheduleItemToHTML(month,interestPaid, principalPaid, newBalance);
 
             // Update the balance
             principal = newBalance;
@@ -151,7 +151,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         
     }
     private static void printScheduleItemToHTML(int month, double interestPaid, double principalPaid, double newBalance, BufferedWriter bw) throws IOException {
-        bw.write(String.format("%8d%10.2f%10.2f%12.2f\n", month, interestPaid, principalPaid, newBalance));
+        bw.write(String.format("%8d%10.2f%10.2f%12.2f\n", <TD>month</TD>, <TD>interestPaid</TD>, <TD>principalPaid</TD>, <TD>newBalance</TD>));
         
     }
  
@@ -168,6 +168,16 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
             "Payment#", "Interest", "Principal", "Balance");
         System.out.format("%8s%10s%10s%12s\n\n",
             "", "paid", "paid", "");
+    }
+    private static void printTableHeaderToHTML(BufferedWriter bw) {
+        System.out.println("\nAmortization schedule");
+        for(int i = 0; i < 40; i++) {  // Draw a line
+            System.out.print("-");
+        }
+        bw.write(String.format("\n%8s%10s%10s%12s\n",
+            "Payment#", "Interest", "Principal", "Balance"));
+        bw.write(String.format("%8s%10s%10s%12s\n\n",
+            "", "paid", "paid", ""));
     }
     
 
