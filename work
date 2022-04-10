@@ -48,16 +48,7 @@ public class Amortization {
             System.out.println("The file does not exist.");
         }
         BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-         bw.write("<HTML><center>\n<h1> Hello " + account +  ". Here is your Amortization table:<BODY>\n<CENTER>\n</h1>\n<TABLE BORDER ='2'>\n");
-bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>");
-         for(int y=0; y<numYears*12;y++)
-         {
-             bw.write("<TR>\n");
-         for(int x=0; x<4; x++)
-             bw.write("<TD>"+printScheduleItemToHTML+"</TD>");
-         
-         bw.write("\n</TR>\n");
-         }
+         printAmortizationScheduleToHTML(
         bw.write("</TABLE>\n</CENTER>\n</BODY>\n</HTML>");
         bw.close();
     
@@ -170,16 +161,9 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
             "", "paid", "paid", "");
     }
     private static void printTableHeaderToHTML(BufferedWriter bw) throws IOException {
-        System.out.println("\nAmortization schedule");
-        for(int i = 0; i < 40; i++) {  // Draw a line
-            System.out.print("-");
-        }
-        bw.write(String.format("\n%8s%10s%10s%12s\n",
-            "Payment#", "Interest", "Principal", "Balance"));
-        bw.write(String.format("%8s%10s%10s%12s\n\n",
-            "", "paid", "paid", ""));
+        bw.write("<HTML><center>\n<h1> Hello " + account +  ". Here is your Amortization table:<BODY>\n<CENTER>\n</h1>\n<TABLE BORDER ='2'>\n");
+bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>");
     }
-    
 
 
 }
