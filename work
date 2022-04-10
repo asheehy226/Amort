@@ -151,7 +151,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         
     }
     private static void printScheduleItemToHTML(int month, double interestPaid, double principalPaid, double newBalance, BufferedWriter bw) throws IOException {
-        bw.write(String.format("%8d%10.2f%10.2f%12.2f\n", <TD>month</TD>, <TD>interestPaid</TD>, <TD>principalPaid</TD>, <TD>newBalance</TD>));
+        bw.write(String.format("%8d%10.2f%10.2f%12.2f\n", "<TD>month</TD>, <TD>interestPaid</TD>, <TD>principalPaid</TD>, <TD>newBalance</TD>"));
         
     }
  
