@@ -116,7 +116,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
          bw.write(String.format("Total Payment: $%8.2f%n", monthlyPayment * numYears * 12));
 
         // Print the table header
-        printTableHeaderToHTML();
+        printTableHeaderToHTML(bw);
 
         for (month = 1; month <= numMonths; month++) {
             // Compute amount paid and new balance for each payment period
@@ -125,7 +125,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
             newBalance    = principal      - principalPaid;
 
             // Output the data item
-            printScheduleItemToHTML(month,interestPaid, principalPaid, newBalance);
+            printScheduleItemToHTML(month,interestPaid, principalPaid, newBalance, bw);
 
             // Update the balance
             principal = newBalance;
@@ -169,7 +169,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         System.out.format("%8s%10s%10s%12s\n\n",
             "", "paid", "paid", "");
     }
-    private static void printTableHeaderToHTML() throws IOException {
+    private static void printTableHeaderToHTML(BufferedWriter bw) throws IOException {
         System.out.println("\nAmortization schedule");
         for(int i = 0; i < 40; i++) {  // Draw a line
             System.out.print("-");
