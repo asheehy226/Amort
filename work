@@ -151,7 +151,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         
     }
     private static void printScheduleItemToHTML(int month, double interestPaid, double principalPaid, double newBalance, BufferedWriter bw) throws IOException {
-        bw.write(String.format("%8d%10.2f%10.2f%12.2f\n", "<TD>month</TD>, <TD>interestPaid</TD>, <TD>principalPaid</TD>, <TD>newBalance</TD>"));
+        bw.write(String.format("<TD>%8d</TD><TD>%10.2f</TD><TD>%10.2f</TD><TD>%12.2f</TD>\n", month, interestPaid, principalPaid, newBalance));
         
     }
  
@@ -169,7 +169,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         System.out.format("%8s%10s%10s%12s\n\n",
             "", "paid", "paid", "");
     }
-    private static void printTableHeaderToHTML(BufferedWriter bw) {
+    private static void printTableHeaderToHTML() throws IOException {
         System.out.println("\nAmortization schedule");
         for(int i = 0; i < 40; i++) {  // Draw a line
             System.out.print("-");
@@ -183,10 +183,3 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
 
 
 }
-
-    
-   
-         
-    
-
-
