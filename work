@@ -32,7 +32,7 @@ public class Amortization {
 
         printAmortizationSchedule(loanAmount, annualInterestRate, numYears);
         
-        File f= new File("test.html");
+        File f= new File(" " +account+ "'s AmortizationTable.html");
      if (f.createNewFile()) {
         System.out.println("File created: " + f.getName());
       } else {
@@ -54,7 +54,7 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
          {
              bw.write("<TR>\n");
          for(int x=0; x<4; x++)
-             bw.write("<TD></TD>");
+             bw.write("<TD>"+printScheduleItemToHTML+"</TD>");
          
          bw.write("\n</TR>\n");
          }
@@ -101,6 +101,38 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         }
     }
 
+   public static void printAmortizationScheduleToHTML(double principal, double annualInterestRate, int numYears) throws IOException {
+        double interestPaid, principalPaid, newBalance;
+        double monthlyInterestRate, monthlyPayment;
+        int month;
+        int numMonths = numYears * 12;
+
+        // Output monthly payment and total payment
+        String account;
+        File f= new File(" " +account+ "'s AmortizationTable.html");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+         
+        monthlyInterestRate = annualInterestRate / 12;
+        monthlyPayment = monthlyPayment(principal, monthlyInterestRate, numYears);
+         bw.write(String.format("Monthly Payment: $%8.2f%n", monthlyPayment));
+         bw.write(String.format("Total Payment: $%8.2f%n", monthlyPayment * numYears * 12));
+
+        // Print the table header
+        printTableHeader();
+
+        for (month = 1; month <= numMonths; month++) {
+            // Compute amount paid and new balance for each payment period
+            interestPaid  = principal      * (monthlyInterestRate / 100);
+            principalPaid = monthlyPayment - interestPaid;
+            newBalance    = principal      - principalPaid;
+
+            // Output the data item
+            printScheduleItem(month,interestPaid, principalPaid, newBalance);
+
+            // Update the balance
+            principal = newBalance;
+        }
+    }
     /**
      * @param loanAmount
      * @param monthlyInterestRate in percent
@@ -120,6 +152,14 @@ bw.write("<TD>Payment</TD> <TD>Interest</TD> <TD>Principal</TD> <TD>Balance</TD>
         System.out.format("%8d%10.2f%10.2f%12.2f\n", month, interestPaid, principalPaid, newBalance);
         
     }
+    private static void printScheduleItemToHTML(int month, double interestPaid, double principalPaid, double newBalance) throws IOException {
+        String account;
+        File f= new File(" " +account+ "'s AmortizationTable.html");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+        bw.write(String.format("%8d%10.2f%10.2f%12.2f\n", month, interestPaid, principalPaid, newBalance));
+        
+    }
+ 
 
     /**
      * Prints the table header for the amortization schedule.
